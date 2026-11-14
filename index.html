@@ -573,11 +573,11 @@ footer p {
         </h1>
 
         <p>
-          Conheça os aplicativos BrDiass Apps. Compartilhe com amigos, ganhe BrCoins e troque por benefícios!
+          Conheça os aplicativos BrDiass Apps. Compartilhe no WhatsApp, ganhe BrCoins e troque por benefícios!
         </p>
 
         <a href="aplicativos.html" class="botao">Explorar aplicativos</a>
-        <button onclick="compartilharApp()" class="botao botao-ouro" style="margin-left: 8px;">🪙 Compartilhar e Ganhar</button>
+        <button onclick="compartilharWhatsApp()" class="botao botao-ouro" style="margin-left: 8px;">🪙 Compartilhar no WhatsApp</button>
 
       </div>
     </div>
@@ -588,9 +588,9 @@ footer p {
     <div class="secao-moedas">
       <div class="moedas-info">
         <h2>Compartilhe e Ganhe BrCoins!</h2>
-        <p>Clique no botão abaixo para compartilhar o link da nossa loja de aplicativos. Se você concluir o compartilhamento (no celular) ou copiar o link (no PC), você ganha <strong>+5 BrCoins</strong>!</p>
+        <p>Clique em compartilhar no WhatsApp. Ao enviar para um amigo ou grupo, volte para o site e clique em "Resgatar Moedas" para garantir suas BrCoins!</p>
       </div>
-      <button onclick="compartilharApp()" class="botao botao-ouro">🚀 Compartilhar App</button>
+      <button onclick="compartilharWhatsApp()" class="botao botao-ouro">🚀 Compartilhar no WhatsApp</button>
     </div>
   </section>
 
@@ -670,7 +670,7 @@ function abrirMenu() {
   document.getElementById("menu").classList.toggle("aberto");
 }
 
-/* SISTEMA DE MOEDAS COM VALIDAÇÃO DE COMPARTILHAMENTO */
+/* SISTEMA DE MOEDAS COM FLUXO SEGURO (WHATSAPP + RESGATE) */
 let minhasMoedas = Number(localStorage.getItem("brdiass_moedas")) || 10;
 
 function atualizarSaldoMoedas() {
@@ -678,29 +678,20 @@ function atualizarSaldoMoedas() {
   localStorage.setItem("brdiass_moedas", minhasMoedas);
 }
 
-async function compartilharApp() {
-  const dadosCompartilhamento = {
-    title: 'BrDiass Apps',
-    text: 'Conheça os melhores aplicativos e soluções digitais na BrDiass Apps!',
-    url: window.location.href
-  };
+function compartilharWhatsApp() {
+  // Texto que vai ser enviado no WhatsApp
+  const texto = encodeURIComponent("🚀 Conheça a BrDiass Apps! Os melhores aplicativos e soluções digitais para você: " + window.location.href);
+  
+  // Abre o WhatsApp direto com a mensagem pronta
+  window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
 
-  // Verifica se o celular suporta a API de compartilhamento nativa
-  if (navigator.share) {
-    try {
-      // Se o usuário concluir o compartilhamento, a Promise é resolvida com sucesso
-      await navigator.share(dadosCompartilhamento);
-      adicionarMoedas(5, "🎉 Compartilhamento concluído com sucesso! +5 BrCoins adicionadas!");
-    } catch (err) {
-      // Se o usuário clicar em "Cancelar" ou fechar a gaveta sem compartilhar, cai aqui e NÃO dá moedas!
-      console.log('Compartilhamento cancelado pelo usuário.');
+  // Pergunta para o usuário resgatar após voltar
+  setTimeout(() => {
+    let confirmou = confirm("Você compartilhou o app no WhatsApp? Clique em OK para resgatar suas +5 BrCoins!");
+    if (confirmou) {
+      adicionarMoedas(5, "🎉 Parabéns! +5 BrCoins adicionadas à sua carteira!");
     }
-  } else {
-    // Fallback para computadores (onde não há API nativa de share)
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      adicionarMoedas(5, "📋 Link copiado para a área de transferência! +5 BrCoins adicionadas!");
-    });
-  }
+  }, 1500);
 }
 
 function adicionarMoedas(qtd, mensagem) {
@@ -719,7 +710,7 @@ const aplicativos = [
     preco: 0,
     icone: "💅",
     arte: "art-bella",
-    imagem: "" // Cole o link da foto aqui se quiser substituir o emoji
+    imagem: ""
   },
   {
     id: 2,
@@ -839,11 +830,11 @@ const firebaseConfig = {
   appId: "1:526931627330:web:ee2553368410f15d764cdb"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+$app = initializeApp(firebaseConfig);
+const auth = getAuth($app);
+const db = getFirestore($app);
 
-window.firebaseServices = { app, auth, db };
+window.firebaseServices = { app: $app, auth, db };
 console.log("Firebase conectado com sucesso!");
 </script>
 

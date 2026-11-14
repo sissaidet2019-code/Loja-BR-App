@@ -214,7 +214,7 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* SEÇÃO DE MOEDAS / GAMIFICATION */
+/* SEÇÃO DE MOEDAS */
 .secao-moedas {
   background: linear-gradient(135deg, #10243b, #142d49);
   border: 1px solid rgba(255, 215, 0, 0.3);
@@ -573,24 +573,24 @@ footer p {
         </h1>
 
         <p>
-          Conheça os aplicativos BrDiass Apps. Indique para amigos com seu link exclusivo, ganhe BrCoins e troque por benefícios!
+          Conheça os aplicativos BrDiass Apps. Compartilhe com amigos, ganhe BrCoins e troque por benefícios!
         </p>
 
         <a href="aplicativos.html" class="botao">Explorar aplicativos</a>
-        <button onclick="copiarLinkConvite()" class="botao botao-ouro" style="margin-left: 8px;">🔗 Copiar Link de Indicação</button>
+        <button onclick="compartilharApp()" class="botao botao-ouro" style="margin-left: 8px;">🪙 Compartilhar e Ganhar</button>
 
       </div>
     </div>
   </section>
 
-  <!-- BANNER DE INDICAÇÃO -->
+  <!-- BANNER DE COMPARTILHAR -->
   <section class="container">
     <div class="secao-moedas">
       <div class="moedas-info">
-        <h2>Indique e Ganhe BrCoins Reais!</h2>
-        <p>Cada usuário possui um código exclusivo. Envie seu link para amigos; assim que alguém acessar o site pela primeira vez através do seu link, você ganha <strong>+5 BrCoins</strong> automaticamente!</p>
+        <h2>Compartilhe e Ganhe BrCoins!</h2>
+        <p>Clique no botão abaixo para compartilhar o link da nossa loja de aplicativos. Se você concluir o compartilhamento (no celular) ou copiar o link (no PC), você ganha <strong>+5 BrCoins</strong>!</p>
       </div>
-      <button onclick="copiarLinkConvite()" class="botao botao-ouro">🔗 Copiar Meu Link</button>
+      <button onclick="compartilharApp()" class="botao botao-ouro">🚀 Compartilhar App</button>
     </div>
   </section>
 
@@ -608,8 +608,8 @@ footer p {
       </div>
       <div class="beneficio">
         <div class="icone">🪙</div>
-        <h3>Indique & Ganhe</h3>
-        <p>Ganhe moedas quando novos usuários acessarem pelo seu link.</p>
+        <h3>Recompensas</h3>
+        <p>Ganhe moedas digitais compartilhando com amigos.</p>
       </div>
     </div>
   </section>
@@ -670,14 +670,7 @@ function abrirMenu() {
   document.getElementById("menu").classList.toggle("aberto");
 }
 
-/* SISTEMA DE ID DE USUÁRIO E MOEDAS */
-let meuIdUnico = localStorage.getItem("brdiass_user_id");
-if (!meuIdUnico) {
-  // Cria um ID aleatório único para este navegador/usuário se não existir
-  meuIdUnico = 'user_' + Math.random().toString(36).substr(2, 9);
-  localStorage.setItem("brdiass_user_id", meuIdUnico);
-}
-
+/* SISTEMA DE MOEDAS COM VALIDAÇÃO DE COMPARTILHAMENTO */
 let minhasMoedas = Number(localStorage.getItem("brdiass_moedas")) || 10;
 
 function atualizarSaldoMoedas() {
@@ -685,35 +678,35 @@ function atualizarSaldoMoedas() {
   localStorage.setItem("brdiass_moedas", minhasMoedas);
 }
 
-// Verifica se o usuário abriu o site através de um link de indicação (?ref=outro_id)
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const quemIndicou = urlParams.get('ref');
+async function compartilharApp() {
+  const dadosCompartilhamento = {
+    title: 'BrDiass Apps',
+    text: 'Conheça os melhores aplicativos e soluções digitais na BrDiass Apps!',
+    url: window.location.href
+  };
 
-  if (quemIndicou && quemIndicou !== meuIdUnico) {
-    // Chave para garantir que este navegador só bonifica o indicador UMA vez
-    const jaFoiBonificado = localStorage.getItem("brdiass_indicado_por");
-    
-    if (!jaFoiBonificado) {
-      localStorage.setItem("brdiass_indicado_por", quemIndicou);
-      
-      // Nota: Em um sistema real com backend/Firebase, aqui você faria uma chamada para somar +5 moedas na conta do "quemIndicou".
-      // Como estamos no GitHub Pages (front-end puro), simulamos que a indicação foi registrada com sucesso!
-      alert("🎉 Você acessou através do link de um amigo! Seja bem-vindo à BrDiass Apps.");
+  // Verifica se o celular suporta a API de compartilhamento nativa
+  if (navigator.share) {
+    try {
+      // Se o usuário concluir o compartilhamento, a Promise é resolvida com sucesso
+      await navigator.share(dadosCompartilhamento);
+      adicionarMoedas(5, "🎉 Compartilhamento concluído com sucesso! +5 BrCoins adicionadas!");
+    } catch (err) {
+      // Se o usuário clicar em "Cancelar" ou fechar a gaveta sem compartilhar, cai aqui e NÃO dá moedas!
+      console.log('Compartilhamento cancelado pelo usuário.');
     }
+  } else {
+    // Fallback para computadores (onde não há API nativa de share)
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      adicionarMoedas(5, "📋 Link copiado para a área de transferência! +5 BrCoins adicionadas!");
+    });
   }
-});
+}
 
-// Copiar link contendo o ID de indicação
-function copiarLinkConvite() {
-  const urlBase = window.location.origin + window.location.pathname;
-  const linkConvite = `${urlBase}?ref=${meuIdUnico}`;
-
-  navigator.clipboard.writeText(linkConvite).then(() => {
-    alert("🔗 Link de indicação copiado com sucesso!\n\nEnvie para seus amigos. Quando eles entrarem pelo seu link, o sistema contabilizará sua indicação!");
-  }).catch(() => {
-    prompt("Copie seu link de indicação abaixo:", linkConvite);
-  });
+function adicionarMoedas(qtd, mensagem) {
+  minhasMoedas += qtd;
+  atualizarSaldoMoedas();
+  alert(mensagem);
 }
 
 /* PRODUTOS DEMONSTRATIVOS COM SUPORTE A FOTO POR LINK */
@@ -726,7 +719,7 @@ const aplicativos = [
     preco: 0,
     icone: "💅",
     arte: "art-bella",
-    imagem: ""
+    imagem: "" // Cole o link da foto aqui se quiser substituir o emoji
   },
   {
     id: 2,

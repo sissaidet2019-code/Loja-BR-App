@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -297,6 +296,7 @@ nav a:hover {
   border-color: rgba(19,201,255,.5);
 }
 
+/* ESTILIZAÇÃO DO BANNER / ARTE DO APP COM SUPORTE A FOTO POR LINK */
 .app-arte {
   min-height: 165px;
   display: flex;
@@ -304,6 +304,16 @@ nav a:hover {
   align-items: center;
   font-size: 65px;
   background: linear-gradient(135deg, #0b3157, #087fe8);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-arte img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
 }
 
 .art-bella {
@@ -708,7 +718,12 @@ function abrirMenu() {
   document.getElementById("menu").classList.toggle("aberto");
 }
 
-/* PRODUTOS DEMONSTRATIVOS */
+/* PRODUTOS DEMONSTRATIVOS 
+   - ATENÇÃO: Adicionamos o campo "imagem". 
+   - Se você colocar o link de uma foto (ex: "https://site.com/foto.jpg" ou caminho local "./img/app1.jpg"), 
+     ela substituirá o ícone automaticamente.
+   - Se deixar vazio (""), o sistema mostra o ícone emoji padrão.
+*/
 
 const aplicativos = [
   {
@@ -718,7 +733,8 @@ const aplicativos = [
     descricao: "Sistema de agendamento de serviços para profissionais da beleza.",
     preco: 0,
     icone: "💅",
-    arte: "art-bella"
+    arte: "art-bella",
+    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER (Ex: "https://i.imgur.com/exemplo.jpg")
   },
   {
     id: 2,
@@ -727,7 +743,8 @@ const aplicativos = [
     descricao: "Solução digital para navegação e localização.",
     preco: 0,
     icone: "📍",
-    arte: "art-gps"
+    arte: "art-gps",
+    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
   },
   {
     id: 3,
@@ -736,7 +753,8 @@ const aplicativos = [
     descricao: "Organize compromissos e gerencie sua rotina profissional.",
     preco: 0,
     icone: "📅",
-    arte: "art-default"
+    arte: "art-default",
+    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
   },
   {
     id: 4,
@@ -745,7 +763,8 @@ const aplicativos = [
     descricao: "Uma experiência digital para entretenimento e mídia.",
     preco: 0,
     icone: "▶️",
-    arte: "art-default"
+    arte: "art-default",
+    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
   },
   {
     id: 5,
@@ -754,7 +773,8 @@ const aplicativos = [
     descricao: "Ferramentas digitais para facilitar tarefas do cotidiano.",
     preco: 0,
     icone: "⚙️",
-    arte: "art-gps"
+    arte: "art-gps",
+    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
   }
 ];
 
@@ -773,11 +793,16 @@ function renderizarApps(lista) {
         })
       : "A definir";
 
+    // Lógica inteligente: Se houver link na propriedade 'imagem', exibe a tag <img>. Se não, exibe o emoji.
+    let conteudoArte = app.imagem 
+      ? `<img src="${app.imagem}" alt="${app.nome}">` 
+      : app.icone;
+
     area.innerHTML += `
       <div class="app-card">
 
         <div class="app-arte ${app.arte}">
-          ${app.icone}
+          ${conteudoArte}
         </div>
 
         <div class="app-info">

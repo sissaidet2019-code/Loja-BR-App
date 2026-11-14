@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>Minha conta | BrDiass Apps</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#071426;color:#f5f9ff;font-family:Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,92%);margin:auto}
+header{background:#09182b;border-bottom:1px solid #20334b;position:sticky;top:0;z-index:10}
+.head{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:24px;font-weight:900;white-space:nowrap}
+.logo span{color:#13c9ff}
+nav{display:flex;gap:22px}
+nav a{font-size:14px;color:#c2d0e1}
+nav a:hover,.active{color:#13c9ff}
+.cart{background:#102944;border:1px solid #29425d;color:white;padding:10px 14px;border-radius:8px}
+.menu{display:none;background:#102944;color:white;border:0;padding:9px;border-radius:7px;font-size:20px}
+.hero{padding:45px 0;text-align:center;background:radial-gradient(ellipse at 50% 20%,#103b62,transparent 70%)}
+.hero h1{font-size:38px}
+.hero h1 span{color:#13c9ff}
+.hero p{color:#9aabc0}
+.content{padding:45px 0 80px;display:flex;justify-content:center}
+.account{width:min(460px,100%);background:#10243b;border:1px solid #29425d;border-radius:14px;padding:30px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:25px}
+.tab{background:#071a30;color:#9aabc0;border:1px solid #29425d;padding:11px;border-radius:8px;cursor:pointer}
+.tab.active{background:#087cf0;color:white;border-color:#087cf0}
+h2{margin-bottom:8px}
+.description{color:#9aabc0;font-size:13px;margin-bottom:18px}
+label{display:block;font-size:13px;margin:14px 0 6px}
+input{width:100%;background:#071a30;color:white;border:1px solid #29425d;border-radius:8px;padding:13px;font:inherit;outline:none}
+input:focus{border-color:#13c9ff}
+.submit{width:100%;background:linear-gradient(110deg,#087cf0,#08bce9);color:white;border:0;border-radius:8px;padding:14px;font-weight:bold;margin-top:22px;cursor:pointer}
+.message{font-size:13px;color:#13c9ff;margin-top:15px;min-height:22px}
+.accountarea{display:none}
+.accountarea button{width:100%;padding:12px;border:0;border-radius:8px;background:#29425d;color:white;margin-top:15px;cursor:pointer}
+.accountarea a{color:#13c9ff}
+footer{background:#050f1d;border-top:1px solid #20334b;padding:35px 0 20px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:25px}
+footer p,footer a{color:#9aabc0;font-size:13px}
+footer h4{margin-bottom:8px}
+.copy{text-align:center;border-top:1px solid #20334b;padding-top:18px;color:#71869f;font-size:12px}
+@media(max-width:850px){nav{display:none;position:absolute;top:75px;left:0;width:100%;background:#09182b;padding:20px 5%;flex-direction:column}nav.open{display:flex}.menu{display:block}}
+@media(max-width:580px){.head{min-height:68px}nav{top:68px}.account{padding:23px}}
+</style>
+</head>
+<body>
+<header>
+<div class="container head">
+<a class="logo" href="index.html">BrDiass<span> Apps</span></a>
+<nav id="nav">
+<a href="index.html">Início</a>
+<a href="aplicativos.html">Aplicativos</a>
+<a href="sobre.html">Sobre nós</a>
+<a href="contato.html">Contato</a>
+<a class="active" href="minha-conta.html">Minha conta</a>
+</nav>
+<div style="display:flex;gap:9px;align-items:center">
+<a class="cart" href="carrinho.html">🛒 <span id="count">0</span></a>
+<button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+</div>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="container">
+<h1>Minha <span>conta.</span></h1>
+<p>Acesse sua conta e acompanhe suas compras.</p>
+</div>
+</section>
+
+<section class="container content">
+<div class="account">
+
+<div id="loginArea">
+<div class="tabs">
+<button class="tab active" id="loginTab" onclick="mostrar('login')">Entrar</button>
+<button class="tab" id="cadTab" onclick="mostrar('cadastro')">Criar conta</button>
+</div>
+
+<form id="loginForm" onsubmit="entrar(event)">
+<h2>Bem-vindo de volta!</h2>
+<p class="description">Entre com seus dados de acesso.</p>
+
+<label for="loginEmail">E-mail</label>
+<input id="loginEmail" type="email" required placeholder="Seu e-mail">
+
+<label for="loginSenha">Senha</label>
+<input id="loginSenha" type="password" required placeholder="Sua senha">
+
+<button class="submit" type="submit">Entrar na minha conta</button>
+<p class="message" id="loginMsg"></p>
+</form>
+
+<form id="cadastroForm" style="display:none" onsubmit="cadastrar(event)">
+<h2>Crie sua conta</h2>
+<p class="description">Cadastre-se para acompanhar suas compras.</p>
+
+<label for="nome">Nome completo</label>
+<input id="nome" type="text" required placeholder="Seu nome">
+
+<label for="cadEmail">E-mail</label>
+<input id="cadEmail" type="email" required placeholder="Seu melhor e-mail">
+
+<label for="cadSenha">Crie uma senha</label>
+<input id="cadSenha" type="password" minlength="6" required placeholder="Mínimo de 6 caracteres">
+
+<label for="confirmar">Confirmar senha</label>
+<input id="confirmar" type="password" minlength="6" required placeholder="Repita sua senha">
+
+<button class="submit" type="submit">Criar minha conta</button>
+<p class="message" id="cadMsg"></p>
+</form>
+</div>
+
+<div class="accountarea" id="clienteArea">
+<h2>Olá, <span id="clienteNome" style="color:#13c9ff"></span>!</h2>
+<p class="description">Bem-vindo à sua área de cliente BrDiass Apps.</p>
+
+<div style="background:#071a30;border:1px solid #29425d;border-radius:9px;padding:18px;margin-top:20px">
+<strong>📦 Minhas compras</strong>
+<p class="description" style="margin:7px 0 0">Seus aplicativos adquiridos aparecerão aqui após a integração do sistema de vendas.</p>
+</div>
+
+<a href="aplicativos.html" style="display:block;margin-top:20px">Explorar aplicativos →</a>
+<button onclick="sair()">Sair da minha conta</button>
+</div>
+
+<p style="color:#71869f;font-size:11px;text-align:center;margin-top:20px">
+Sistema demonstrativo. As contas reais serão protegidas pelo Firebase na próxima etapa.
+</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="foot">
+<div><a class="logo" href="index.html">BrDiass<span> Apps</span></a><p>Aplicativos e soluções digitais.</p></div>
+<div><h4>Navegação</h4><a href="index.html">Início</a><br><a href="aplicativos.html">Aplicativos</a></div>
+<div><h4>Atendimento</h4><a href="contato.html">Contato</a></div>
+</div>
+<div class="copy">© 2026 BrDiass Apps. Todos os direitos reservados.</div>
+</div>
+</footer>
+
+<script>
+function atualizar(){
+let c=JSON.parse(localStorage.getItem("brdiass_carrinho")||"[]");
+document.getElementById("count").textContent=c.reduce((s,x)=>s+x.qtd,0);
+}
+
+function mostrar(tipo){
+let login=tipo==="login";
+document.getElementById("loginForm").style.display=login?"block":"none";
+document.getElementById("cadastroForm").style.display=login?"none":"block";
+document.getElementById("loginTab").classList.toggle("active",login);
+document.getElementById("cadTab").classList.toggle("active",!login);
+}
+
+function cadastrar(e){
+e.preventDefault();
+let nome=document.getElementById("nome").value.trim();
+let email=document.getElementById("cadEmail").value.trim().toLowerCase();
+let senha=document.getElementById("cadSenha").value;
+let confirmar=document.getElementById("confirmar").value;
+
+if(senha!==confirmar){
+document.getElementById("cadMsg").textContent="As senhas não são iguais.";
+return;
+}
+
+let contas=JSON.parse(localStorage.getItem("brdiass_contas")||"[]");
+
+if(contas.some(c=>c.email===email)){
+document.getElementById("cadMsg").textContent="Este e-mail já está cadastrado.";
+return;
+}
+
+contas.push({nome,email,senha});
+localStorage.setItem("brdiass_contas",JSON.stringify(contas));
+
+document.getElementById("cadMsg").textContent="Cadastro demonstrativo realizado! Agora entre na sua conta.";
+document.getElementById("cadastroForm").reset();
+mostrar("login");
+document.getElementById("loginEmail").value=email;
+document.getElementById("loginMsg").textContent="Conta criada. Faça seu login.";
+}
+
+function entrar(e){
+e.preventDefault();
+let email=document.getElementById("loginEmail").value.trim().toLowerCase();
+let senha=document.getElementById("loginSenha").value;
+let contas=JSON.parse(localStorage.getItem("brdiass_contas")||"[]");
+let conta=contas.find(c=>c.email===email&&c.senha===senha);
+
+if(!conta){
+document.getElementById("loginMsg").textContent="E-mail ou senha incorretos.";
+return;
+}
+
+localStorage.setItem("brdiass_sessao",JSON.stringify({nome:conta.nome,email:conta.email}));
+exibirConta();
+}
+
+function exibirConta(){
+let sessao=JSON.parse(localStorage.getItem("brdiass_sessao")||"null");
+if(!sessao)return;
+document.getElementById("loginArea").style.display="none";
+document.getElementById("clienteArea").style.display="block";
+document.getElementById("clienteNome").textContent=sessao.nome;
+}
+
+function sair(){
+localStorage.removeItem("brdiass_sessao");
+location.reload();
+}
+
+atualizar();
+exibirConta();
+</script>
+</body>
+</html>

@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<meta name="description" content="BrDiass Apps - Aplicativos e soluções digitais para facilitar sua vida.">
+<title>BrDiass Apps | Loja de Aplicativos</title>
+
+<style>
+:root {
+  --fundo: #071426;
+  --painel: #10243b;
+  --painel2: #142d49;
+  --azul: #087fe8;
+  --ciano: #13c9ff;
+  --texto: #f4f8ff;
+  --cinza: #a9bbd0;
+  --borda: rgba(255,255,255,.10);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+.container {
+  width: 92%;
+  max-width: 1180px;
+  margin: auto;
+}
+
+/* CABEÇALHO */
+
+header {
+  background: rgba(7,20,38,.96);
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.topo {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--ciano);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+nav a {
+  color: var(--cinza);
+  font-size: 14px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: var(--ciano);
+}
+
+.carrinho-topo {
+  background: var(--azul);
+  padding: 10px 16px;
+  border-radius: 9px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.carrinho-topo span {
+  background: white;
+  color: var(--azul);
+  padding: 2px 7px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+
+.menu-mobile {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--borda);
+  color: white;
+  font-size: 24px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* DESTAQUE */
+
+.hero {
+  padding: 95px 0;
+  background:
+    radial-gradient(circle at 80% 30%, rgba(19,201,255,.16), transparent 30%),
+    linear-gradient(135deg, #071426, #0b2543);
+  border-bottom: 1px solid var(--borda);
+}
+
+.hero-conteudo {
+  max-width: 760px;
+}
+
+.etiqueta {
+  display: inline-block;
+  color: var(--ciano);
+  border: 1px solid rgba(19,201,255,.35);
+  background: rgba(19,201,255,.08);
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 22px;
+  font-weight: 900;
+}
+
+.hero h1 span {
+  color: var(--ciano);
+}
+
+.hero p {
+  color: var(--cinza);
+  font-size: 17px;
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.botao {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--azul), var(--ciano));
+  color: white;
+  padding: 13px 23px;
+  border: 0;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.botao:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(19,201,255,.22);
+}
+
+.botao-secundario {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  margin-left: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+/* BENEFÍCIOS */
+
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 35px 0;
+}
+
+.beneficio {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+  padding: 22px;
+}
+
+.beneficio .icone {
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.beneficio h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.beneficio p {
+  font-size: 13px;
+  color: var(--cinza);
+}
+
+/* SEÇÕES */
+
+.secao {
+  padding: 65px 0;
+}
+
+.titulo-secao {
+  margin-bottom: 30px;
+}
+
+.titulo-secao small {
+  color: var(--ciano);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.titulo-secao h2 {
+  font-size: 32px;
+  margin-top: 5px;
+}
+
+.titulo-secao p {
+  color: var(--cinza);
+  margin-top: 7px;
+}
+
+/* BUSCA */
+
+.busca {
+  margin-bottom: 25px;
+}
+
+.busca input {
+  width: 100%;
+  max-width: 480px;
+  background: var(--painel);
+  color: white;
+  border: 1px solid var(--borda);
+  padding: 14px 17px;
+  border-radius: 9px;
+  outline: none;
+  font-size: 15px;
+}
+
+.busca input:focus {
+  border-color: var(--ciano);
+}
+
+/* APLICATIVOS */
+
+.grade-apps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.app-card {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(19,201,255,.5);
+}
+
+.app-arte {
+  min-height: 165px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 65px;
+  background: linear-gradient(135deg, #0b3157, #087fe8);
+}
+
+.art-bella {
+  background: linear-gradient(135deg, #4b245a, #d65a9c);
+}
+
+.art-gps {
+  background: linear-gradient(135deg, #064c66, #08a9c9);
+}
+
+.art-default {
+  background: linear-gradient(135deg, #142d49, #087fe8);
+}
+
+.app-info {
+  padding: 20px;
+}
+
+.categoria {
+  color: var(--ciano);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.app-info h3 {
+  font-size: 20px;
+  margin: 7px 0;
+}
+
+.app-info p {
+  color: var(--cinza);
+  font-size: 13px;
+  min-height: 42px;
+}
+
+.app-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.preco {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.app-rodape button {
+  background: var(--azul);
+  border: none;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.app-rodape button:hover {
+  background: var(--ciano);
+  color: #071426;
+}
+
+.sem-resultados {
+  color: var(--cinza);
+  padding: 20px 0;
+}
+
+/* SOBRE */
+
+.sobre-caixa {
+  background: linear-gradient(135deg, #10243b, #0b3157);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 35px;
+}
+
+.sobre-caixa h2 {
+  font-size: 29px;
+  margin-bottom: 12px;
+}
+
+.sobre-caixa p {
+  color: var(--cinza);
+  max-width: 750px;
+  margin-bottom: 20px;
+}
+
+/* RODAPÉ */
+
+footer {
+  background: #050e1b;
+  border-top: 1px solid var(--borda);
+  padding: 35px 0;
+  margin-top: 40px;
+}
+
+.rodape-conteudo {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+footer p {
+  color: var(--cinza);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.links-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+}
+
+.links-rodape a {
+  color: var(--cinza);
+  font-size: 13px;
+}
+
+.links-rodape a:hover {
+  color: var(--ciano);
+}
+
+/* MODAL */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0,0,0,.78);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-conteudo {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 15px;
+  padding: 28px;
+  width: 100%;
+  max-width: 430px;
+  position: relative;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal-icone {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.modal-conteudo p {
+  color: var(--cinza);
+  margin: 12px 0 20px;
+}
+
+/* CELULAR */
+
+@media (max-width: 850px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    background: #071426;
+    padding: 20px;
+    border-bottom: 1px solid var(--borda);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 17px;
+  }
+
+  nav.aberto {
+    display: flex;
+  }
+
+  .menu-mobile {
+    display: block;
+  }
+
+  .grade-apps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .beneficios {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .logo {
+    font-size: 21px;
+  }
+
+  .topo {
+    gap: 8px;
+  }
+
+  .hero {
+    padding: 65px 0;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .botao-secundario {
+    margin: 12px 0 0;
+  }
+
+  .grade-apps {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-secao h2 {
+    font-size: 26px;
+  }
+
+  .sobre-caixa {
+    padding: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topo">
+
+    <a href="index.html" class="logo">
+      BrDiass<span>Apps</span>
+    </a>
+
+    <button class="menu-mobile" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
+
+    <nav id="menu">
+      <a href="index.html">Início</a>
+      <a href="aplicativos.html">Aplicativos</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="minha-conta.html">Minha conta</a>
+      <a href="carrinho.html" class="carrinho-topo">
+        🛒 Carrinho <span id="contadorCarrinho">0</span>
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-conteudo">
+
+        <span class="etiqueta">TECNOLOGIA E SOLUÇÕES DIGITAIS</span>
+
+        <h1>
+          Aplicativos que <span>facilitam</span> sua vida.
+        </h1>
+
+        <p>
+          Conheça os aplicativos BrDiass Apps. Soluções digitais
+          desenvolvidas para ajudar você no dia a dia, nos negócios
+          e no entretenimento.
+        </p>
+
+        <a href="aplicativos.html" class="botao">Explorar aplicativos</a>
+        <a href="sobre.html" class="botao-secundario">Conheça a loja</a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="beneficios">
+
+      <div class="beneficio">
+        <div class="icone">📱</div>
+        <h3>Soluções digitais</h3>
+        <p>Aplicativos pensados para facilitar suas atividades.</p>
+      </div>
+
+      <div class="beneficio">
+        <div class="icone">⚡</div>
+        <h3>Praticidade</h3>
+        <p>Mais facilidade e organização para sua rotina.</p>
+      </div>
+
+      <div class="beneficio">
+        <div class="icone">🔒</div>
+        <h3>Compra segura</h3>
+        <p>Estamos preparando uma experiência de compra segura.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="secao container" id="destaques">
+
+    <div class="titulo-secao">
+      <small>NOSSOS PRODUTOS</small>
+      <h2>Aplicativos em destaque</h2>
+      <p>Conheça algumas das soluções disponíveis na BrDiass Apps.</p>
+    </div>
+
+    <div class="busca">
+      <input
+        type="search"
+        id="campoBusca"
+        placeholder="🔎 Pesquisar aplicativo..."
+        oninput="pesquisarApps()"
+      >
+    </div>
+
+    <div class="grade-apps" id="listaApps"></div>
+
+    <p id="semResultados" class="sem-resultados" style="display:none;">
+      Nenhum aplicativo encontrado.
+    </p>
+
+    <div style="text-align:center; margin-top:35px;">
+      <a href="aplicativos.html" class="botao">Ver todos os aplicativos</a>
+    </div>
+
+  </section>
+
+  <section class="secao container">
+    <div class="sobre-caixa">
+
+      <h2>Bem-vindo à BrDiass Apps!</h2>
+
+      <p>
+        Nossa loja reúne aplicativos e ferramentas digitais
+        desenvolvidos para oferecer praticidade, organização
+        e novas possibilidades para nossos clientes.
+      </p>
+
+      <a href="sobre.html" class="botao">Saiba mais sobre nós</a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container rodape-conteudo">
+
+    <div>
+      <a href="index.html" class="logo">BrDiass<span>Apps</span></a>
+      <p>Aplicativos e soluções digitais.</p>
+      <p>© 2026 BrDiass Apps. Todos os direitos reservados.</p>
+    </div>
+
+    <div class="links-rodape">
+      <a href="index.html">Início</a>
+      <a href="aplicativos.html">Aplicativos</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="minha-conta.html">Minha conta</a>
+    </div>
+
+  </div>
+</footer>
+
+<!-- JANELA DE DETALHES DO APLICATIVO -->
+
+<div class="modal" id="modalApp" onclick="fecharModalFora(event)">
+  <div class="modal-conteudo">
+
+    <button class="fechar" onclick="fecharModal()">×</button>
+
+    <div class="modal-icone" id="modalIcone">📱</div>
+    <h2 id="modalNome">Aplicativo</h2>
+    <p id="modalDescricao"></p>
+
+    <a href="aplicativos.html" class="botao">Ver aplicativo</a>
+
+  </div>
+</div>
+
+<script>
+/* MENU MOBILE */
+
+function abrirMenu() {
+  document.getElementById("menu").classList.toggle("aberto");
+}
+
+/* PRODUTOS DEMONSTRATIVOS */
+
+const aplicativos = [
+  {
+    id: 1,
+    nome: "BellaPés & Mãos",
+    categoria: "Negócios",
+    descricao: "Sistema de agendamento de serviços para profissionais da beleza.",
+    preco: 0,
+    icone: "💅",
+    arte: "art-bella"
+  },
+  {
+    id: 2,
+    nome: "GPS Brasil",
+    categoria: "Utilidades",
+    descricao: "Solução digital para navegação e localização.",
+    preco: 0,
+    icone: "📍",
+    arte: "art-gps"
+  },
+  {
+    id: 3,
+    nome: "BrDiass Agenda",
+    categoria: "Negócios",
+    descricao: "Organize compromissos e gerencie sua rotina profissional.",
+    preco: 0,
+    icone: "📅",
+    arte: "art-default"
+  },
+  {
+    id: 4,
+    nome: "BrDiass Player",
+    categoria: "Entretenimento",
+    descricao: "Uma experiência digital para entretenimento e mídia.",
+    preco: 0,
+    icone: "▶️",
+    arte: "art-default"
+  },
+  {
+    id: 5,
+    nome: "BrDiass Tools",
+    categoria: "Utilidades",
+    descricao: "Ferramentas digitais para facilitar tarefas do cotidiano.",
+    preco: 0,
+    icone: "⚙️",
+    arte: "art-gps"
+  }
+];
+
+/* EXIBIR APLICATIVOS */
+
+function renderizarApps(lista) {
+  const area = document.getElementById("listaApps");
+
+  area.innerHTML = "";
+
+  lista.slice(0, 3).forEach(app => {
+    const preco = app.preco > 0
+      ? app.preco.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        })
+      : "A definir";
+
+    area.innerHTML += `
+      <div class="app-card">
+
+        <div class="app-arte ${app.arte}">
+          ${app.icone}
+        </div>
+
+        <div class="app-info">
+
+          <span class="categoria">${app.categoria}</span>
+
+          <h3>${app.nome}</h3>
+
+          <p>${app.descricao}</p>
+
+          <div class="app-rodape">
+
+            <span class="preco">${preco}</span>
+
+            <button onclick="abrirDetalhes(${app.id})">
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  });
+
+  document.getElementById("semResultados").style.display =
+    lista.length === 0 ? "block" : "none";
+}
+
+/* PESQUISA */
+
+function pesquisarApps() {
+  const termo = document.getElementById("campoBusca")
+    .value.toLowerCase();
+
+  const encontrados = aplicativos.filter(app =>
+    app.nome.toLowerCase().includes(termo) ||
+    app.categoria.toLowerCase().includes(termo) ||
+    app.descricao.toLowerCase().includes(termo)
+  );
+
+  renderizarApps(encontrados);
+}
+
+/* DETALHES */
+
+function abrirDetalhes(id) {
+  const app = aplicativos.find(item => item.id === id);
+
+  if (!app) return;
+
+  document.getElementById("modalIcone").textContent = app.icone;
+  document.getElementById("modalNome").textContent = app.nome;
+  document.getElementById("modalDescricao").textContent = app.descricao;
+
+  document.getElementById("modalApp").style.display = "flex";
+}
+
+function fecharModal() {
+  document.getElementById("modalApp").style.display = "none";
+}
+
+function fecharModalFora(event) {
+  if (event.target.id === "modalApp") {
+    fecharModal();
+  }
+}
+
+/* CARRINHO */
+
+function obterCarrinho() {
+  try {
+    return JSON.parse(localStorage.getItem("brdiass_carrinho")) || [];
+  } catch (erro) {
+    return [];
+  }
+}
+
+function atualizarContador() {
+  const carrinho = obterCarrinho();
+
+  const quantidade = carrinho.reduce(
+    (total, item) => total + Number(item.qtd || 0),
+    0
+  );
+
+  document.getElementById("contadorCarrinho").textContent = quantidade;
+}
+
+/* INICIALIZAÇÃO DA PÁGINA */
+
+renderizarApps(aplicativos);
+atualizarContador();
+</script>
+
+<!-- FIREBASE - BRDIASS APPS -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCn7LsBiINZ4ApOT8i3htfT4Re-sKh9XrE",
+  authDomain: "brdias-app.firebaseapp.com",
+  projectId: "brdias-app",
+  storageBucket: "brdias-app.firebasestorage.app",
+  messagingSenderId: "526931627330",
+  appId: "1:526931627330:web:ee2553368410f15d764cdb",
+  measurementId: "G-D33YSY79WR"
+};
+
+// Inicializar projeto
+const app = initializeApp(firebaseConfig);
+
+// Serviços Firebase
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// Analytics
+let analytics = null;
+
+try {
+  analytics = getAnalytics(app);
+} catch (erro) {
+  console.log("Analytics não disponível.");
+}
+
+// Disponibilizar serviços para futuras integrações
+window.firebaseServices = {
+  app,
+  auth,
+  db,
+  storage,
+  analytics
+};
+
+console.log("Firebase conectado!");
+console.log("Projeto:", app.options.projectId);
+</script>
+
+</body>
+</html>

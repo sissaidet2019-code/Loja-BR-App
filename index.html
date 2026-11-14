@@ -17,6 +17,7 @@
   --texto: #f4f8ff;
   --cinza: #a9bbd0;
   --borda: rgba(255,255,255,.10);
+  --ouro: #ffd700;
 }
 
 * {
@@ -52,7 +53,6 @@ button, input {
 }
 
 /* CABEÇALHO */
-
 header {
   background: rgba(7,20,38,.96);
   border-bottom: 1px solid var(--borda);
@@ -84,7 +84,7 @@ header {
 nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
 }
 
 nav a {
@@ -97,9 +97,23 @@ nav a:hover {
   color: var(--ciano);
 }
 
+/* BADGE DE MOEDAS NO TOPO */
+.badge-moedas {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: var(--ouro);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .carrinho-topo {
   background: var(--azul);
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 9px;
   font-weight: bold;
   font-size: 14px;
@@ -125,7 +139,6 @@ nav a:hover {
 }
 
 /* DESTAQUE */
-
 .hero {
   padding: 95px 0;
   background:
@@ -185,6 +198,12 @@ nav a:hover {
   box-shadow: 0 8px 25px rgba(19,201,255,.22);
 }
 
+.botao-ouro {
+  background: linear-gradient(90deg, #d4af37, #f3e5ab);
+  color: #071426;
+  font-weight: 900;
+}
+
 .botao-secundario {
   display: inline-block;
   padding: 12px 22px;
@@ -195,8 +214,33 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* BENEFÍCIOS */
+/* SEÇÃO DE MOEDAS / GAMIFICATION */
+.secao-moedas {
+  background: linear-gradient(135deg, #10243b, #142d49);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 35px;
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
 
+.moedas-info h2 {
+  font-size: 26px;
+  color: var(--ouro);
+  margin-bottom: 8px;
+}
+
+.moedas-info p {
+  color: var(--cinza);
+  font-size: 14px;
+  max-width: 600px;
+}
+
+/* BENEFÍCIOS */
 .beneficios {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -227,7 +271,6 @@ nav a:hover {
 }
 
 /* SEÇÕES */
-
 .secao {
   padding: 65px 0;
 }
@@ -254,7 +297,6 @@ nav a:hover {
 }
 
 /* BUSCA */
-
 .busca {
   margin-bottom: 25px;
 }
@@ -276,7 +318,6 @@ nav a:hover {
 }
 
 /* APLICATIVOS */
-
 .grade-apps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -296,7 +337,6 @@ nav a:hover {
   border-color: rgba(19,201,255,.5);
 }
 
-/* ESTILIZAÇÃO DO BANNER / ARTE DO APP COM SUPORTE A FOTO POR LINK */
 .app-arte {
   min-height: 165px;
   display: flex;
@@ -314,18 +354,6 @@ nav a:hover {
   object-fit: cover;
   position: absolute;
   inset: 0;
-}
-
-.art-bella {
-  background: linear-gradient(135deg, #4b245a, #d65a9c);
-}
-
-.art-gps {
-  background: linear-gradient(135deg, #064c66, #08a9c9);
-}
-
-.art-default {
-  background: linear-gradient(135deg, #142d49, #087fe8);
 }
 
 .app-info {
@@ -383,28 +411,7 @@ nav a:hover {
   padding: 20px 0;
 }
 
-/* SOBRE */
-
-.sobre-caixa {
-  background: linear-gradient(135deg, #10243b, #0b3157);
-  border: 1px solid var(--borda);
-  border-radius: 16px;
-  padding: 35px;
-}
-
-.sobre-caixa h2 {
-  font-size: 29px;
-  margin-bottom: 12px;
-}
-
-.sobre-caixa p {
-  color: var(--cinza);
-  max-width: 750px;
-  margin-bottom: 20px;
-}
-
 /* RODAPÉ */
-
 footer {
   background: #050e1b;
   border-top: 1px solid var(--borda);
@@ -441,7 +448,6 @@ footer p {
 }
 
 /* MODAL */
-
 .modal {
   display: none;
   position: fixed;
@@ -484,8 +490,7 @@ footer p {
   margin: 12px 0 20px;
 }
 
-/* CELULAR */
-
+/* RESPONSIVO */
 @media (max-width: 850px) {
   nav {
     display: none;
@@ -500,19 +505,15 @@ footer p {
     align-items: stretch;
     gap: 17px;
   }
-
   nav.aberto {
     display: flex;
   }
-
   .menu-mobile {
     display: block;
   }
-
   .grade-apps {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .beneficios {
     grid-template-columns: 1fr;
   }
@@ -522,33 +523,8 @@ footer p {
   .logo {
     font-size: 21px;
   }
-
-  .topo {
-    gap: 8px;
-  }
-
-  .hero {
-    padding: 65px 0;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .botao-secundario {
-    margin: 12px 0 0;
-  }
-
   .grade-apps {
     grid-template-columns: 1fr;
-  }
-
-  .titulo-secao h2 {
-    font-size: 26px;
-  }
-
-  .sobre-caixa {
-    padding: 23px;
   }
 }
 </style>
@@ -570,7 +546,12 @@ footer p {
       <a href="aplicativos.html">Aplicativos</a>
       <a href="sobre.html">Sobre</a>
       <a href="contato.html">Contato</a>
-      <a href="minha-conta.html">Minha conta</a>
+      
+      <!-- BOTÃO DE MOEDAS NO MENU -->
+      <div class="badge-moedas">
+        🪙 <span id="saldoMoedas">10</span> BrCoins
+      </div>
+
       <a href="carrinho.html" class="carrinho-topo">
         🛒 Carrinho <span id="contadorCarrinho">0</span>
       </a>
@@ -592,44 +573,48 @@ footer p {
         </h1>
 
         <p>
-          Conheça os aplicativos BrDiass Apps. Soluções digitais
-          desenvolvidas para ajudar você no dia a dia, nos negócios
-          e no entretenimento.
+          Conheça os aplicativos BrDiass Apps. Compartilhe com amigos, ganhe BrCoins e troque por benefícios exclusivos!
         </p>
 
         <a href="aplicativos.html" class="botao">Explorar aplicativos</a>
-        <a href="sobre.html" class="botao-secundario">Conheça a loja</a>
+        <button onclick="compartilharApp()" class="botao botao-ouro" style="margin-left: 8px;">🪙 Ganhe BrCoins</button>
 
       </div>
+    </div>
+  </section>
+
+  <!-- BANNER DE COMPARTILHAR E GANHAR -->
+  <section class="container">
+    <div class="secao-moedas">
+      <div class="moedas-info">
+        <h2>Indique e Ganhe BrCoins!</h2>
+        <p>Compartilhe o link da nossa loja de aplicativos com seus amigos no WhatsApp ou redes sociais. A cada compartilhamento válido, você ganha <strong>+5 BrCoins</strong> para usar na plataforma.</p>
+      </div>
+      <button onclick="compartilharApp()" class="botao botao-ouro">🚀 Compartilhar Agora</button>
     </div>
   </section>
 
   <section class="container">
     <div class="beneficios">
-
       <div class="beneficio">
         <div class="icone">📱</div>
         <h3>Soluções digitais</h3>
         <p>Aplicativos pensados para facilitar suas atividades.</p>
       </div>
-
       <div class="beneficio">
         <div class="icone">⚡</div>
         <h3>Praticidade</h3>
         <p>Mais facilidade e organização para sua rotina.</p>
       </div>
-
       <div class="beneficio">
-        <div class="icone">🔒</div>
-        <h3>Compra segura</h3>
-        <p>Estamos preparando uma experiência de compra segura.</p>
+        <div class="icone">🪙</div>
+        <h3>Sistema de Recompensas</h3>
+        <p>Ganhe moedas digitais apenas por indicar o app.</p>
       </div>
-
     </div>
   </section>
 
   <section class="secao container" id="destaques">
-
     <div class="titulo-secao">
       <small>NOSSOS PRODUTOS</small>
       <h2>Aplicativos em destaque</h2>
@@ -637,12 +622,7 @@ footer p {
     </div>
 
     <div class="busca">
-      <input
-        type="search"
-        id="campoBusca"
-        placeholder="🔎 Pesquisar aplicativo..."
-        oninput="pesquisarApps()"
-      >
+      <input type="search" id="campoBusca" placeholder="🔎 Pesquisar aplicativo..." oninput="pesquisarApps()">
     </div>
 
     <div class="grade-apps" id="listaApps"></div>
@@ -654,77 +634,79 @@ footer p {
     <div style="text-align:center; margin-top:35px;">
       <a href="aplicativos.html" class="botao">Ver todos os aplicativos</a>
     </div>
-
-  </section>
-
-  <section class="secao container">
-    <div class="sobre-caixa">
-
-      <h2>Bem-vindo à BrDiass Apps!</h2>
-
-      <p>
-        Nossa loja reúne aplicativos e ferramentas digitais
-        desenvolvidos para oferecer praticidade, organização
-        e novas possibilidades para nossos clientes.
-      </p>
-
-      <a href="sobre.html" class="botao">Saiba mais sobre nós</a>
-
-    </div>
   </section>
 
 </main>
 
 <footer>
   <div class="container rodape-conteudo">
-
     <div>
       <a href="index.html" class="logo">BrDiass<span>Apps</span></a>
       <p>Aplicativos e soluções digitais.</p>
       <p>© 2026 BrDiass Apps. Todos os direitos reservados.</p>
     </div>
-
     <div class="links-rodape">
       <a href="index.html">Início</a>
       <a href="aplicativos.html">Aplicativos</a>
       <a href="sobre.html">Sobre</a>
       <a href="contato.html">Contato</a>
-      <a href="minha-conta.html">Minha conta</a>
     </div>
-
   </div>
 </footer>
 
-<!-- JANELA DE DETALHES DO APLICATIVO -->
-
 <div class="modal" id="modalApp" onclick="fecharModalFora(event)">
   <div class="modal-conteudo">
-
     <button class="fechar" onclick="fecharModal()">×</button>
-
     <div class="modal-icone" id="modalIcone">📱</div>
     <h2 id="modalNome">Aplicativo</h2>
     <p id="modalDescricao"></p>
-
     <a href="aplicativos.html" class="botao">Ver aplicativo</a>
-
   </div>
 </div>
 
 <script>
 /* MENU MOBILE */
-
 function abrirMenu() {
   document.getElementById("menu").classList.toggle("aberto");
 }
 
-/* PRODUTOS DEMONSTRATIVOS 
-   - ATENÇÃO: Adicionamos o campo "imagem". 
-   - Se você colocar o link de uma foto (ex: "https://site.com/foto.jpg" ou caminho local "./img/app1.jpg"), 
-     ela substituirá o ícone automaticamente.
-   - Se deixar vazio (""), o sistema mostra o ícone emoji padrão.
-*/
+/* SISTEMA DE MOEDAS (BrCoins) */
+let minhasMoedas = Number(localStorage.getItem("brdiass_moedas")) || 10;
 
+function atualizarSaldoMoedas() {
+  document.getElementById("saldoMoedas").textContent = minhasMoedas;
+  localStorage.setItem("brdiass_moedas", minhasMoedas);
+}
+
+// Função de Compartilhamento Nativa
+async function compartilharApp() {
+  const dadosCompartilhamento = {
+    title: 'BrDiass Apps',
+    text: 'Conheça os melhores aplicativos e soluções digitais na BrDiass Apps!',
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(dadosCompartilhamento);
+      adicionarMoedas(5, "Parabéns! Você ganhou +5 BrCoins por compartilhar o app! 🎉");
+    } catch (err) {
+      console.log('Compartilhamento cancelado');
+    }
+  } else {
+    // Fallback se o navegador não suportar o botão nativo (copia o link)
+    navigator.clipboard.writeText(window.location.href);
+    adicionarMoedas(5, "Link copiado para a área de transferência! +5 BrCoins adicionadas! 🪙");
+  }
+}
+
+function adicionarMoedas(qtd, mensagem) {
+  minhasMoedas += qtd;
+  atualizarSaldoMoedas();
+  alert(mensagem);
+}
+
+/* PRODUTOS DEMONSTRATIVOS COM SUPORTE A FOTO POR LINK */
 const aplicativos = [
   {
     id: 1,
@@ -734,7 +716,7 @@ const aplicativos = [
     preco: 0,
     icone: "💅",
     arte: "art-bella",
-    imagem: "https://t2.tudocdn.net/603541?w=1920" // <-- COLOQUE O LINK DA FOTO AQUI QUISER (Ex: "https://i.imgur.com/exemplo.jpg")
+    imagem: "" // Cole o link da foto aqui se quiser substituir o emoji
   },
   {
     id: 2,
@@ -744,7 +726,7 @@ const aplicativos = [
     preco: 0,
     icone: "📍",
     arte: "art-gps",
-    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
+    imagem: ""
   },
   {
     id: 3,
@@ -754,111 +736,58 @@ const aplicativos = [
     preco: 0,
     icone: "📅",
     arte: "art-default",
-    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
-  },
-  {
-    id: 4,
-    nome: "BrDiass Player",
-    categoria: "Entretenimento",
-    descricao: "Uma experiência digital para entretenimento e mídia.",
-    preco: 0,
-    icone: "▶️",
-    arte: "art-default",
-    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
-  },
-  {
-    id: 5,
-    nome: "BrDiass Tools",
-    categoria: "Utilidades",
-    descricao: "Ferramentas digitais para facilitar tarefas do cotidiano.",
-    preco: 0,
-    icone: "⚙️",
-    arte: "art-gps",
-    imagem: "" // <-- COLOQUE O LINK DA FOTO AQUI QUISER
+    imagem: ""
   }
 ];
 
-/* EXIBIR APLICATIVOS */
-
 function renderizarApps(lista) {
   const area = document.getElementById("listaApps");
-
   area.innerHTML = "";
 
   lista.slice(0, 3).forEach(app => {
     const preco = app.preco > 0
-      ? app.preco.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL"
-        })
+      ? app.preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
       : "A definir";
 
-    // Lógica inteligente: Se houver link na propriedade 'imagem', exibe a tag <img>. Se não, exibe o emoji.
     let conteudoArte = app.imagem 
       ? `<img src="${app.imagem}" alt="${app.nome}">` 
       : app.icone;
 
     area.innerHTML += `
       <div class="app-card">
-
-        <div class="app-arte ${app.arte}">
-          ${conteudoArte}
-        </div>
-
+        <div class="app-arte">${conteudoArte}</div>
         <div class="app-info">
-
           <span class="categoria">${app.categoria}</span>
-
           <h3>${app.nome}</h3>
-
           <p>${app.descricao}</p>
-
           <div class="app-rodape">
-
             <span class="preco">${preco}</span>
-
-            <button onclick="abrirDetalhes(${app.id})">
-              Ver detalhes
-            </button>
-
+            <button onclick="abrirDetalhes(${app.id})">Ver detalhes</button>
           </div>
-
         </div>
-
       </div>
     `;
   });
 
-  document.getElementById("semResultados").style.display =
-    lista.length === 0 ? "block" : "none";
+  document.getElementById("semResultados").style.display = lista.length === 0 ? "block" : "none";
 }
 
-/* PESQUISA */
-
 function pesquisarApps() {
-  const termo = document.getElementById("campoBusca")
-    .value.toLowerCase();
-
+  const termo = document.getElementById("campoBusca").value.toLowerCase();
   const encontrados = aplicativos.filter(app =>
     app.nome.toLowerCase().includes(termo) ||
     app.categoria.toLowerCase().includes(termo) ||
     app.descricao.toLowerCase().includes(termo)
   );
-
   renderizarApps(encontrados);
 }
 
-/* DETALHES */
-
 function abrirDetalhes(id) {
   const app = aplicativos.find(item => item.id === id);
-
   if (!app) return;
-
   document.getElementById("modalIcone").textContent = app.icone;
   document.getElementById("modalNome").textContent = app.nome;
   document.getElementById("modalDescricao").textContent = app.descricao;
-
   document.getElementById("modalApp").style.display = "flex";
 }
 
@@ -872,8 +801,6 @@ function fecharModalFora(event) {
   }
 }
 
-/* CARRINHO */
-
 function obterCarrinho() {
   try {
     return JSON.parse(localStorage.getItem("brdiass_carrinho")) || [];
@@ -884,29 +811,21 @@ function obterCarrinho() {
 
 function atualizarContador() {
   const carrinho = obterCarrinho();
-
-  const quantidade = carrinho.reduce(
-    (total, item) => total + Number(item.qtd || 0),
-    0
-  );
-
+  const quantidade = carrinho.reduce((total, item) => total + Number(item.qtd || 0), 0);
   document.getElementById("contadorCarrinho").textContent = quantidade;
 }
 
-/* INICIALIZAÇÃO DA PÁGINA */
-
+// INICIALIZAÇÃO
 renderizarApps(aplicativos);
 atualizarContador();
+atualizarSaldoMoedas();
 </script>
 
-<!-- FIREBASE - BRDIASS APPS -->
-
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCn7LsBiINZ4ApOT8i3htfT4Re-sKh9XrE",
@@ -914,38 +833,15 @@ const firebaseConfig = {
   projectId: "brdias-app",
   storageBucket: "brdias-app.firebasestorage.app",
   messagingSenderId: "526931627330",
-  appId: "1:526931627330:web:ee2553368410f15d764cdb",
-  measurementId: "G-D33YSY79WR"
+  appId: "1:526931627330:web:ee2553368410f15d764cdb"
 };
 
-// Inicializar projeto
 const app = initializeApp(firebaseConfig);
-
-// Serviços Firebase
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
-// Analytics
-let analytics = null;
-
-try {
-  analytics = getAnalytics(app);
-} catch (erro) {
-  console.log("Analytics não disponível.");
-}
-
-// Disponibilizar serviços para futuras integrações
-window.firebaseServices = {
-  app,
-  auth,
-  db,
-  storage,
-  analytics
-};
-
-console.log("Firebase conectado!");
-console.log("Projeto:", app.options.projectId);
+window.firebaseServices = { app, auth, db };
+console.log("Firebase conectado com sucesso!");
 </script>
 
 </body>
